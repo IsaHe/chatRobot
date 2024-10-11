@@ -108,6 +108,11 @@ def esperarQueRespuestaTermine(driver):
         if time.time() - start_time > 60:
             break
     time.sleep(1)
+    print("Respuesta recibida")
 
 def obtenerRespuesta(driver):
-    return driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
+    elements = driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
+    if elements:
+        return elements[-1].get_attribute('innerHTML')
+    else:
+        return ""
