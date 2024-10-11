@@ -30,9 +30,9 @@ def openChat():
         aiMessage = copilot()
         
     if chatbot == "chatgpt":
-        chatgpt()
+        aiMessage = chatgpt()
     
-    #pdf.html_to_pdf(aiMessage, "output/Respuesta.pdf")
+    pdf.html_to_pdf(aiMessage, "output/Respuesta.pdf")
 
 def copilot():
     browser.goto("https://copilot.microsoft.com/?OCID=MA13R8")
@@ -46,7 +46,7 @@ def copilot():
 def chatgpt():
     url = r"https://chat.openai.com"
     
-    abrirChrome(url)
+    return abrirChrome(url)
 
 def abrirChrome(url):
     puertoDisponible = encontrarPuertoDisponible()
@@ -55,6 +55,8 @@ def abrirChrome(url):
     driver = inicializarWebDriver(puertoDisponible)
     obtenerCookie(driver)
     enviarPrompt(driver)
+    esperarQueRespuestaTermine(driver)
+    return obtenerRespuesta(driver)
 
 def encontrarPuertoDisponible():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -97,3 +99,15 @@ def enviarPrompt(driver):
     textArea.send_keys(Keys.RETURN)
     print("Prompt enviado")
 
+def esperarQueRespuestaTermine(driver):
+    start_time = time.time()
+    while len(driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')[-1].find_elements(
+        by=By.CSS_SELECTOR, value='button.text-token-text-tertiary')) < 1:
+        print("Esperando respuesta...")
+        time.sleep(0.5)
+        if time.time() - start_time > 60:
+            break
+    time.sleep(1)
+
+def obtenerRespuesta(driver):
+    return driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
