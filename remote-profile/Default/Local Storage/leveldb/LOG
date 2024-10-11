@@ -1,2 +1,8 @@
-2024/10/11-15:55:58.297 3703 Creating DB /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb since it was missing.
-2024/10/11-15:55:58.328 3703 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/MANIFEST-000001
+2024/10/11-18:36:12.738 3803 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/MANIFEST-000001
+2024/10/11-18:36:12.764 3803 Recovering log #3
+2024/10/11-18:36:12.766 3803 Level-0 table #3: started
+2024/10/11-18:36:12.773 3803 Level-0 table #3: 16037 bytes OK
+2024/10/11-18:36:12.797 3803 Delete type=0 #3
+2024/10/11-18:37:17.968 3803 Level-0 table #6: started
+2024/10/11-18:37:17.976 3803 Level-0 table #6: 15398 bytes OK
+2024/10/11-18:37:17.981 3803 Delete type=0 #4

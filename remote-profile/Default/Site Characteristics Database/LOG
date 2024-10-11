@@ -1,2 +1,3 @@
-2024/10/11-15:55:58.251 8803 Creating DB /Users/isaacherbozo/chatRobot/remote-profile/Default/Site Characteristics Database since it was missing.
-2024/10/11-15:55:58.261 8803 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Site Characteristics Database/MANIFEST-000001
+2024/10/11-18:36:12.605 8803 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Site Characteristics Database/MANIFEST-000001
+2024/10/11-18:36:12.606 8803 Recovering log #3
+2024/10/11-18:36:12.607 8803 Reusing old log /Users/isaacherbozo/chatRobot/remote-profile/Default/Site Characteristics Database/000003.log 

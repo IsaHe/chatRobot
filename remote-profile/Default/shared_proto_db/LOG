@@ -1,2 +1,3 @@
-2024/10/11-15:55:59.362 8803 Creating DB /Users/isaacherbozo/chatRobot/remote-profile/Default/shared_proto_db since it was missing.
-2024/10/11-15:55:59.372 8803 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/shared_proto_db/MANIFEST-000001
+2024/10/11-18:36:15.134 9f03 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/shared_proto_db/MANIFEST-000001
+2024/10/11-18:36:15.135 9f03 Recovering log #3
+2024/10/11-18:36:15.140 9f03 Reusing old log /Users/isaacherbozo/chatRobot/remote-profile/Default/shared_proto_db/000003.log 

@@ -69,7 +69,7 @@ def iniciarChrome(puerto, url):
     threading.Thread(target=abrirChromeEnDebug).start()
 
 def esperarVerificacion():
-    time.sleep(200)
+    time.sleep(60)
 
 def inicializarWebDriver(puerto):
     chromeOptions = webdriver.ChromeOptions()
@@ -80,6 +80,17 @@ def inicializarWebDriver(puerto):
 
 def obtenerCookie(driver):    
     cookies = driver.get_cookies()
-    cookie = [elem for elem in cookies if elem["name"] == '__Secure-next-auth.session-token'][0]['value']
-    return cookie
+    session_cookies = [elem for elem in cookies if elem["name"] == '__Secure-next-auth.session-token']
+    
+    if session_cookies:
+        cookie = session_cookies[0]['value']
+        return cookie
+    else:
+        print("No se pudo obtener la cookie")
+
+def enviarPrompt(driver):
+    textArea = driver.find_element(by=By.XPATH, value='//textarea[contains(@id, "prompt-textarea")]')
+    driver.execute_script("arguments[0].value = arguments[1];", textArea, prompt)
+    textArea.send_keys(Keys.RETURN)
+    textArea.submit()
 
