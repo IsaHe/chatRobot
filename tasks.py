@@ -47,20 +47,20 @@ def preparePromt(prompt):
     if not PATH_TO_ATATCHMENT_FILE:
         return prompt
     
-    file_extension = os.path.splitext(PATH_TO_ATATCHMENT_FILE)[1].lower()
+    extensionArchivo = os.path.splitext(PATH_TO_ATATCHMENT_FILE)[1].lower()
+    textoArchivo = ""
     
-    if file_extension == ".pdf":
-        file_text = pdf.get_text_from_pdf(PATH_TO_ATATCHMENT_FILE)[1].replace("\n", " ")
-    elif file_extension == ".xlsx":
+    if extensionArchivo == ".pdf":
+        textoArchivo = pdf.get_text_from_pdf(PATH_TO_ATATCHMENT_FILE)[1].replace("\n", " ")
+    
+    if extensionArchivo == ".xlsx":
         exel.open_workbook(PATH_TO_ATATCHMENT_FILE)
-        file_text = exel.read_worksheet_as_table(header=True).to_string()
-    elif file_extension == ".csv":
-        cvs.read_table_from_csv(PATH_TO_ATATCHMENT_FILE)
-        file_text = cvs.get_table().to_string()
-    else:
-        file_text = ""
+        textoArchivo = exel.read_worksheet_as_table(header=True).to_string()
     
-    return prompt + ":" + file_text
+    if extensionArchivo == ".csv":
+        textoArchivo = cvs.read_table_from_csv(PATH_TO_ATATCHMENT_FILE).to_string()
+    
+    return prompt + ":" + textoArchivo
 
 def copilot(prompt):
     browser.goto("https://copilot.microsoft.com/?OCID=MA13R8")
