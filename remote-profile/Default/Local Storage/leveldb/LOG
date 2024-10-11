@@ -1,3 +1,15 @@
-2024/10/11-23:07:01.345 3803 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/MANIFEST-000001
-2024/10/11-23:07:01.363 3803 Recovering log #40
-2024/10/11-23:07:01.363 3803 Reusing old log /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/000040.log 
+2024/10/12-00:39:30.799 2307 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/MANIFEST-000001
+2024/10/12-00:39:30.810 2307 Recovering log #59
+2024/10/12-00:39:30.811 2307 Reusing old log /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/000059.log 
+2024/10/12-00:40:45.928 2307 Level-0 table #63: started
+2024/10/12-00:40:45.936 2307 Level-0 table #63: 15583 bytes OK
+2024/10/12-00:40:45.945 2307 Delete type=0 #59
+2024/10/12-00:40:45.946 3403 Compacting 4@0 + 1@1 files
+2024/10/12-00:40:45.950 3403 Generated table #64@0: 12 keys, 16202 bytes
+2024/10/12-00:40:45.950 3403 Compacted 4@0 + 1@1 files => 16202 bytes
+2024/10/12-00:40:45.954 3403 compacted to: files[ 0 1 0 0 0 0 0 ]
+2024/10/12-00:40:45.954 3403 Delete type=2 #63
+2024/10/12-00:40:45.954 3403 Delete type=2 #60
+2024/10/12-00:40:45.954 3403 Delete type=2 #57
+2024/10/12-00:40:45.954 3403 Delete type=2 #54
+2024/10/12-00:40:45.954 3403 Delete type=2 #51

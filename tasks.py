@@ -2,6 +2,8 @@ from robocorp.tasks import task
 from robocorp import browser
 
 from RPA.PDF import PDF
+from RPA.Excel.Files import Files
+from RPA.Tables import Tables
 
 import os
 import socket
@@ -12,29 +14,40 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-prompt = "Dame una historia de amor sobre robots"
 pdf = PDF()
+
 chatbot = "chatgpt"
 page = None
 
 CHROME_PATH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 CHROME_DRIVER_PATH = "cromeDriver/chromedriver"
+PATH_TO_ATATCHMENT_FILE = "output/Respuesta.pdf"
 
 @task
 def openChat():
+    
     browser.configure(
         slowmo=20000,
     )
     
+    prompt = "Continua la siguiente historia sobre robots."
+    prompt = preparePromt(prompt)
+    
     if chatbot == "copilot":
-        aiMessage = copilot()
+        aiMessage = copilot(prompt)
         
     if chatbot == "chatgpt":
-        aiMessage = chatgpt()
+        aiMessage = chatgpt(prompt)
     
     pdf.html_to_pdf(aiMessage, "output/Respuesta.pdf")
 
-def copilot():
+def preparePromt(prompt):
+    if not PATH_TO_ATATCHMENT_FILE:
+        return prompt
+    
+    return prompt + ":" + pdf.get_text_from_pdf(PATH_TO_ATATCHMENT_FILE)[1].replace("ChatGPT", "").replace("4o mini", "").replace("\n", " ")
+
+def copilot(prompt):
     browser.goto("https://copilot.microsoft.com/?OCID=MA13R8")
     page = browser.page()
     page.fill("#userInput", prompt)
@@ -43,20 +56,22 @@ def copilot():
     
     return aiMessage
 
-def chatgpt():
+def chatgpt(prompt):
     url = r"https://chat.openai.com"
     
-    return abrirChrome(url)
+    return abrirChrome(url, prompt)
 
-def abrirChrome(url):
+def abrirChrome(url, prompt):
     puertoDisponible = encontrarPuertoDisponible()
     iniciarChrome(puertoDisponible, url)
     esperarVerificacion()
     driver = inicializarWebDriver(puertoDisponible)
     obtenerCookie(driver)
-    enviarPrompt(driver)
+    enviarPrompt(driver, prompt)
     esperarQueRespuestaTermine(driver)
-    return obtenerRespuesta(driver)
+    respuestaHtml = obtenerRespuesta(driver)
+    driver.quit()
+    return respuestaHtml
 
 def encontrarPuertoDisponible():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -91,7 +106,7 @@ def obtenerCookie(driver):
     else:
         return
 
-def enviarPrompt(driver):
+def enviarPrompt(driver, prompt):
     textArea = driver.find_element(By.ID, "prompt-textarea")
     textArea.send_keys(prompt)
     textArea.send_keys(Keys.RETURN)
@@ -102,6 +117,7 @@ def esperarQueRespuestaTermine(driver): # TODO: Mejorar esto para que funcione c
         by=By.CSS_SELECTOR, value='button.text-token-text-tertiary')) < 1:
         time.sleep(0.5)
         if time.time() - start_time > 60:
+            print("Timeout")
             break
     time.sleep(1)
 
