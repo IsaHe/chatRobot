@@ -54,6 +54,7 @@ def abrirChrome(url):
     esperarVerificacion()
     driver = inicializarWebDriver(puertoDisponible)
     obtenerCookie(driver)
+    enviarPrompt(driver)
 
 def encontrarPuertoDisponible():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -88,10 +89,11 @@ def obtenerCookie(driver):
         return cookie
     else:
         print("No se pudo obtener la cookie")
+        return
 
 def enviarPrompt(driver):
-    textArea = driver.find_element(by=By.XPATH, value='//textarea[contains(@id, "prompt-textarea")]')
-    driver.execute_script("arguments[0].value = arguments[1];", textArea, prompt)
+    textArea = driver.find_element(By.ID, "prompt-textarea")
+    textArea.send_keys(prompt)
     textArea.send_keys(Keys.RETURN)
-    textArea.submit()
+    print("Prompt enviado")
 
