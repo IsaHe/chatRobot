@@ -112,7 +112,9 @@ def esperarQueRespuestaTermine(driver):
 
 def obtenerRespuesta(driver):
     elements = driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
+    for i in range(len(elements)):
+        print("--------------------------------------------------------\n" + f"Elemento {i}\n" + elements[i].get_attribute('innerHTML') + "\n--------------------------------------------------------\n")
     if elements:
-        return elements[-1].get_attribute('innerHTML')
+        return elements[2].get_attribute('innerHTML')
     else:
         return ""
