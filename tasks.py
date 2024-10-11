@@ -70,6 +70,7 @@ def iniciarChrome(puerto, url):
 
 def esperarVerificacion():
     time.sleep(60)
+    print("Chrome abierto")
 
 def inicializarWebDriver(puerto):
     chromeOptions = webdriver.ChromeOptions()

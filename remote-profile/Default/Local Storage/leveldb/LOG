@@ -1,8 +1,3 @@
-2024/10/11-18:36:12.738 3803 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/MANIFEST-000001
-2024/10/11-18:36:12.764 3803 Recovering log #3
-2024/10/11-18:36:12.766 3803 Level-0 table #3: started
-2024/10/11-18:36:12.773 3803 Level-0 table #3: 16037 bytes OK
-2024/10/11-18:36:12.797 3803 Delete type=0 #3
-2024/10/11-18:37:17.968 3803 Level-0 table #6: started
-2024/10/11-18:37:17.976 3803 Level-0 table #6: 15398 bytes OK
-2024/10/11-18:37:17.981 3803 Delete type=0 #4
+2024/10/11-18:45:35.442 3903 Reusing MANIFEST /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/MANIFEST-000001
+2024/10/11-18:45:35.459 3903 Recovering log #5
+2024/10/11-18:45:35.460 3903 Reusing old log /Users/isaacherbozo/chatRobot/remote-profile/Default/Local Storage/leveldb/000005.log 
