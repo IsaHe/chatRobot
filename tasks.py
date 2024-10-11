@@ -79,8 +79,8 @@ def chatgpt(prompt):
 def abrirChrome(url, prompt):
     puertoDisponible = encontrarPuertoDisponible()
     iniciarChrome(puertoDisponible, url)
-    esperarVerificacion()
     driver = inicializarWebDriver(puertoDisponible)
+    esperarVerificacion(driver)
     obtenerCookie(driver)
     enviarPrompt(driver, prompt)
     esperarQueRespuestaTermine(driver)
@@ -101,8 +101,18 @@ def iniciarChrome(puerto, url):
 
     threading.Thread(target=abrirChromeEnDebug).start()
 
-def esperarVerificacion():
-    time.sleep(60)  # TODO: Mejorar esto para que no sea un tiempo fijo
+def esperarVerificacion(driver):
+    tiempoInicio = time.time()
+    tiempoEsperaMax = 60
+
+    while time.time() - tiempoInicio < tiempoEsperaMax:
+        elements = driver.find_elements(By.CSS_SELECTOR, 'a.mt-5.cursor-pointer.text-sm.font-semibold.text-token-text-secondary.underline')
+        if elements:
+            elements[0].click()
+            print("Verificado")
+            break
+        time.sleep(1)
+    print("No verificado")
 
 def inicializarWebDriver(puerto):
     chromeOptions = webdriver.ChromeOptions()
