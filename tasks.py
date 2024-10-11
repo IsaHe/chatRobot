@@ -15,6 +15,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 pdf = PDF()
+exel = Files()
+cvs = Tables()
 
 chatbot = "chatgpt"
 page = None
@@ -45,7 +47,20 @@ def preparePromt(prompt):
     if not PATH_TO_ATATCHMENT_FILE:
         return prompt
     
-    return prompt + ":" + pdf.get_text_from_pdf(PATH_TO_ATATCHMENT_FILE)[1].replace("ChatGPT", "").replace("4o mini", "").replace("\n", " ")
+    file_extension = os.path.splitext(PATH_TO_ATATCHMENT_FILE)[1].lower()
+    
+    if file_extension == ".pdf":
+        file_text = pdf.get_text_from_pdf(PATH_TO_ATATCHMENT_FILE)[1].replace("\n", " ")
+    elif file_extension == ".xlsx":
+        exel.open_workbook(PATH_TO_ATATCHMENT_FILE)
+        file_text = exel.read_worksheet_as_table(header=True).to_string()
+    elif file_extension == ".csv":
+        cvs.read_table_from_csv(PATH_TO_ATATCHMENT_FILE)
+        file_text = cvs.get_table().to_string()
+    else:
+        file_text = ""
+    
+    return prompt + ":" + file_text
 
 def copilot(prompt):
     browser.goto("https://copilot.microsoft.com/?OCID=MA13R8")
