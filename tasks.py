@@ -72,8 +72,7 @@ def iniciarChrome(puerto, url):
     threading.Thread(target=abrirChromeEnDebug).start()
 
 def esperarVerificacion():
-    time.sleep(60)
-    print("Chrome abierto")
+    time.sleep(60)  # TODO: Mejorar esto para que no sea un tiempo fijo
 
 def inicializarWebDriver(puerto):
     chromeOptions = webdriver.ChromeOptions()
@@ -90,30 +89,25 @@ def obtenerCookie(driver):
         cookie = session_cookies[0]['value']
         return cookie
     else:
-        print("No se pudo obtener la cookie")
         return
 
 def enviarPrompt(driver):
     textArea = driver.find_element(By.ID, "prompt-textarea")
     textArea.send_keys(prompt)
     textArea.send_keys(Keys.RETURN)
-    print("Prompt enviado")
 
-def esperarQueRespuestaTermine(driver):
+def esperarQueRespuestaTermine(driver): # TODO: Mejorar esto para que funcione correctamente
     start_time = time.time()
     while len(driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')[-1].find_elements(
         by=By.CSS_SELECTOR, value='button.text-token-text-tertiary')) < 1:
-        print("Esperando respuesta...")
         time.sleep(0.5)
         if time.time() - start_time > 60:
             break
     time.sleep(1)
-    print("Respuesta recibida")
 
 def obtenerRespuesta(driver):
     elements = driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
-    for i in range(len(elements)):
-        print("--------------------------------------------------------\n" + f"Elemento {i}\n" + elements[i].get_attribute('innerHTML') + "\n--------------------------------------------------------\n")
+
     if elements:
         return elements[2].get_attribute('innerHTML')
     else:
