@@ -1,4 +1,3 @@
-# Soporte para windows todavia no implementado!!
 # RoboChat Automation Script
 
 Este proyecto automatiza la interacción con chatbots como ChatGPT y Copilot utilizando Selenium y el framework de Robocorp. El script `tasks.py` permite abrir un navegador, enviar un prompt a un chatbot y guardar la respuesta en un archivo PDF.
@@ -23,9 +22,7 @@ Este proyecto automatiza la interacción con chatbots como ChatGPT y Copilot uti
 
 2. **Instalar las dependencias:**
 
-    ```sh
-    pip install -r requirements.txt
-    ```
+    - VS code las instalara por ti usando `conda.yaml`
 
 3. **Configurar el entorno:**
 
@@ -40,7 +37,7 @@ Este proyecto automatiza la interacción con chatbots como ChatGPT y Copilot uti
 2. **Ejecutar el script:**
 
     - En VS code con el teclado abrir la paleta de comandos (macOS: Shift-Command-P, Windows / Linux: Ctrl+Shift+P)
-    - Escribe `run robot` y selecciona `Robocorp: Create Task Package (Robot)
+    - Escribe `run robot` y selecciona `Robocorp: Create Task Package (Robot)`
 
 3. **Seleccionar el chatbot:**
 
