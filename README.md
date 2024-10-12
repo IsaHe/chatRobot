@@ -22,7 +22,7 @@ Este proyecto automatiza la interacción con chatbots como ChatGPT y Copilot uti
 
 2. **Instalar las dependencias:**
 
-    - VS code las instalara por ti usando `conda.yaml`
+    - VS Code las instalará por ti usando `conda.yaml`
 
 3. **Configurar el entorno:**
 
@@ -32,12 +32,13 @@ Este proyecto automatiza la interacción con chatbots como ChatGPT y Copilot uti
 
 1. **Configurar el archivo de entrada:**
 
-    Coloca el archivo que deseas adjuntar en la carpeta `output` y asegúrate de que `PATH_TO_ATATCHMENT_FILE` en `tasks.py` apunta a este archivo.
+    Coloca el archivo que deseas adjuntar en la carpeta `output` y asegúrate de que `PATH_TO_ATTACHMENT_FILE` en `tasks.py` apunta a este archivo.
 
 2. **Ejecutar el script:**
 
-    - En VS code con el teclado abrir la paleta de comandos (macOS: Shift-Command-P, Windows / Linux: Ctrl+Shift+P)
+    - En VS Code con el teclado abre la paleta de comandos (macOS: Shift-Command-P, Windows / Linux: Ctrl+Shift+P)
     - Escribe `run robot` y selecciona `Robocorp: Create Task Package (Robot)`
+    - La primera ejecución requiere de intervención humana para la configuración inicial que te pide Chrome. En esta primera ejecución el script dará error y tendrás que volver a ejecutarlo.
 
 3. **Seleccionar el chatbot:**
 
@@ -53,7 +54,7 @@ Este proyecto automatiza la interacción con chatbots como ChatGPT y Copilot uti
 
 Esta función principal configura el navegador, prepara el prompt y envía el prompt al chatbot seleccionado. Luego guarda la respuesta en un archivo PDF.
 
-### `preparePromt(prompt)`
+### `preparePrompt(prompt)`
 
 Prepara el prompt añadiendo el contenido del archivo adjunto si existe.
 
