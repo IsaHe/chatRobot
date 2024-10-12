@@ -85,6 +85,7 @@ def abrirChrome(url, prompt):
     enviarPrompt(driver, prompt)
     esperarQueRespuestaTermine(driver)
     respuestaHtml = obtenerRespuesta(driver)
+    driver.close()
     driver.quit()
     return respuestaHtml
 
