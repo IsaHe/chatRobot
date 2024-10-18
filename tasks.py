@@ -85,8 +85,8 @@ def abrirChrome(url, prompt):
     enviarPrompt(driver, prompt)
     esperarQueRespuestaTermine(driver)
     respuestaHtml = obtenerRespuesta(driver)
-    driver.close()
-    driver.quit()
+    #driver.close()
+    #driver.quit()
     return respuestaHtml
 
 def encontrarPuertoDisponible():
@@ -103,17 +103,7 @@ def iniciarChrome(puerto, url):
     threading.Thread(target=abrirChromeEnDebug).start()
 
 def esperarVerificacion(driver):
-    tiempoInicio = time.time()
-    tiempoEsperaMax = 60
-
-    while time.time() - tiempoInicio < tiempoEsperaMax:
-        elements = driver.find_elements(By.CSS_SELECTOR, 'a.mt-5.cursor-pointer.text-sm.font-semibold.text-token-text-secondary.underline')
-        if elements:
-            elements[0].click()
-            print("Verificado")
-            break
-        time.sleep(1)
-    print("No verificado")
+    time.sleep(60)
 
 def inicializarWebDriver(puerto):
     chromeOptions = webdriver.ChromeOptions()
@@ -151,6 +141,6 @@ def obtenerRespuesta(driver):
     elements = driver.find_elements(by=By.CSS_SELECTOR, value='div.text-base')
 
     if elements:
-        return elements[2].get_attribute('innerHTML')
+        return elements[2].get_attribute('innerHTML').replace("ChatGPT", "").replace("4o mini", "")
     else:
         return ""
